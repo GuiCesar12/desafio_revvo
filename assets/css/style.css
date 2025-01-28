@@ -1,0 +1,149 @@
+.carousel{
+    position: inherit;
+    
+    height: 100vh;
+}
+.carousel-caption-custom {
+    position: absolute;
+    top: 75%;
+    left: 10%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 350px;
+}
+
+/* Estilizando os botões de navegação */
+.carousel-control-prev, .carousel-control-next {
+    width: 5%;
+}
+
+/* Indicadores do carrossel */
+.carousel-indicators button {
+    background-color: #fff;
+}
+
+/* Navbar */
+.navbar-custom {
+    background-color: #f8f9fa;
+    padding: 10px 20px;
+}
+
+.navbar-brand {
+    font-weight: bold;
+}
+
+.navbar-search {
+    flex-grow: 1;
+    margin: 0 20px;
+}
+
+.navbar-search input {
+    width: 100%;
+    max-width: 300px;
+}
+
+.navbar-user {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-user img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+/* Ajuste do carrossel para redimensionamento dinâmico */
+#customCarousel {
+    width: 100%;
+    min-height: 300px; /* Altura mínima */
+    height: 40vh; /* Ajusta dinamicamente conforme a tela */
+    overflow: hidden;
+}
+
+#customCarousel .carousel-inner {
+    height: 100%;
+}
+
+#customCarousel .carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Mantém proporção e preenche o espaço */
+    max-height: 100%;
+}
+
+.course-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #fff;
+    text-align: center;
+    padding-bottom: 15px;
+    transition: transform 0.2s ease-in-out;
+}
+
+.course-card:hover {
+    transform: scale(1.03);
+}
+
+.course-card img {
+    width: 100%;
+    height: auto;
+}
+
+.course-card .title {
+    font-weight: bold;
+    padding: 10px;
+}
+
+.course-card .description {
+    font-size: 14px;
+    color: #666;
+    padding: 0 10px;
+}
+
+.course-card .btn {
+    background: #008000;
+    color: white;
+    font-weight: bold;
+    border-radius: 20px;
+    padding: 8px 20px;
+    margin-top: 10px;
+}
+
+.course-card .btn:hover {
+    background: #006400;
+}
+
+.add-course {
+    border: 2px dashed #aaa;
+    border-radius: 8px;
+    text-align: center;
+    padding: 40px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.add-course:hover {
+    background: #f9f9f9;
+}
+
+.add-course i {
+    font-size: 40px;
+    color: #aaa;
+}
+
+.add-course p {
+    font-weight: bold;
+    color: #666;
+    margin-top: 10px;
+}
+.courses-section {
+    background: #f8f9fa; /* Cinza claro */
+    padding: 40px 20px;
+    border-radius: 8px;
+}
