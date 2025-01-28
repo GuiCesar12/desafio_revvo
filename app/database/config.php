@@ -1,6 +1,6 @@
 <?php
 return [
-        'dbname'=>"teste_jr",
+        'dbname'=>"revvo",
         "username"=>"root",
         "password"=>"",
         "charset"=>"utf8",

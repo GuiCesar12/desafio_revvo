@@ -17,7 +17,7 @@
         <div class="dropdown">
           <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
             <i class="fa-solid fa-user me-2"></i>
-            <?= $this->e($title) ?>
+            Nome de Usuário
           </a>
           <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
             <li><a class="dropdown-item" href="#">Perfil</a></li>
@@ -66,45 +66,18 @@
     <h3 class="fw-bold">MEUS CURSOS</h3><br>
     <div class="row g-3">
         <!-- Curso 1 -->
+
+        <?php foreach ($cursos as $curso): ?>
         <div class="col-12 col-sm-6 col-md-4 col-lg-3">
             <div class="course-card">
-                <img src="assets/img/curso.jpg" alt="Curso">
-                <div class="title">PELLENTESQUE MALESUADA</div>
-                <div class="description">Curabitur blandit tempus porttitor. Nulla vitae elit libero, a pharetra augue.</div>
-                <button class="btn">VER CURSO</button>
+              <input type="hidden" value="<?= $this->e($curso->id) ?>">
+              <img src="assets/img/curso.jpg" alt="Curso">
+              <div class="title"><?= htmlspecialchars($curso->name, ENT_QUOTES, 'UTF-8'); ?></div>
+              <div class="description"><?= htmlspecialchars($curso->description, ENT_QUOTES, 'UTF-8'); ?></div>
+              <button class="btn">VER CURSO</button>
             </div>
         </div>
-
-        <!-- Curso 2 -->
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-            <div class="course-card">
-                <img src="assets/img/curso.jpg" alt="Curso">
-                <div class="title">PELLENTESQUE MALESUADA</div>
-                <div class="description">Curabitur blandit tempus porttitor. Nulla vitae elit libero, a pharetra augue.</div>
-                <button class="btn">VER CURSO</button>
-            </div>
-        </div>
-
-        <!-- Curso 3 -->
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-            <div class="course-card">
-                <img src="assets/img/curso.jpg" alt="Curso">
-                <div class="title">PELLENTESQUE MALESUADA</div>
-                <div class="description">Curabitur blandit tempus porttitor. Nulla vitae elit libero, a pharetra augue.</div>
-                <button class="btn">VER CURSO</button>
-            </div>
-        </div>
-
-        <!-- Curso 4 -->
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-            <div class="course-card">
-                <img src="assets/img/curso.jpg" alt="Curso">
-                <div class="title">PELLENTESQUE MALESUADA</div>
-                <div class="description">Curabitur blandit tempus porttitor. Nulla vitae elit libero, a pharetra augue.</div>
-                <button class="btn">VER CURSO</button>
-            </div>
-        </div>
-
+    <?php endforeach; ?>
         <!-- Botão "Adicionar Curso" -->
         <div class="col-12 col-sm-6 col-md-4 col-lg-3">
             <div class="add-course">
@@ -128,9 +101,6 @@
           <h5 class="text-uppercase">Links Úteis</h5>
           <ul class="list-unstyled mb-0">
             <li><a href="#!" class="text-dark">Link 1</a></li>
-            <li><a href="#!" class="text-dark">Link 2</a></li>
-            <li><a href="#!" class="text-dark">Link 3</a></li>
-            <li><a href="#!" class="text-dark">Link 4</a></li>
           </ul>
         </div>
         <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
