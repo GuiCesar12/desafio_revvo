@@ -69,7 +69,7 @@
 
         <?php foreach ($cursos as $curso): ?>
         <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-            <div class="course-card">
+            <div class="course-card"data-bs-toggle="modal" data-bs-target="#exampleModal">
               <input type="hidden" value="<?= $this->e($curso->id) ?>">
               <img src="assets/img/curso.jpg" alt="Curso">
               <div class="title"><?= htmlspecialchars($curso->name, ENT_QUOTES, 'UTF-8'); ?></div>
@@ -81,7 +81,7 @@
         <!-- Botão "Adicionar Curso" -->
         <div class="col-12 col-sm-6 col-md-4 col-lg-3">
             <div class="add-course">
-                <i class="fa-solid fa-laptop-code"></i>
+                <i class="fa-solid fa-laptop-code" id="add_curso"></i>
                 <p>ADICIONAR CURSO</p>
             </div>
         </div>
@@ -117,5 +117,36 @@
     </div>
   </footer>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script>
+    
+    $('.btn').on('click', function() {
+        var courseId = $(this).siblings('input[type="hidden"]').val(); // Pega o valor do input hidden
+        $.ajax({
+            url: '/get_cursos', // URL para onde a requisição será enviada
+            type: 'GET', // Método da requisição
+            data: { id: courseId }, // Envia o ID do curso como parâmetro
+            success: function(response) {
+                // Manipula a resposta
+                var curso = JSON.parse(response).curso;
+                $('#courseId').val(curso.id).prop('disabled', true);
+                $('#courseTitle').val(curso.name).prop('disabled', true);
+                $('#courseDescription').val(curso.description).prop('disabled', true);
+                $('#courseDuration').val(curso.duration).prop('disabled', true);
+
+                $('#exampleModal').modal('show');
+
+            },
+            error: function(xhr, status, error) {
+                // Manipula o erro
+                console.error(error);
+            }
+        });
+    });
+    $('#add_curso').on('click', function() {
+        $('#exampleModal').modal('show');
+    });
+  </script>
 </body>
 </html>
+<?php $this->insert('formularios/formulario_select'); ?>

@@ -25,12 +25,15 @@ class CursoController extends Controller
         }
     }
 
-    public function select($id)
-    {   
-        $curso = new Curso();
-        $curso = $curso->find($id);
-        return json_encode(['success' => 'Curso criado com sucesso!','status_code'=>200,'curso'=>$curso]);
-
+    public function select()
+    {
+        try {
+            $curso = new Curso();
+            $curso = $curso->find($_GET['id']);
+            echo json_encode(['success' => 'Curso selecionado com sucesso!', 'status_code' => 200, 'curso' => $curso]);
+        } catch (Exception $e) {
+            echo json_encode(['error' => $e->getMessage()]);
+        }
     }
 
     // public function edit($id)
