@@ -8,7 +8,11 @@ class CursoController extends Controller
     public function index()
     {
         #$cursos = Curso::all();
-        return $this->view('index');
+        $data = [
+            'title' => 'Minha Página',
+            'message' => 'Bem-vindo ao Plates!'
+        ];
+        return $this->view('index', $data);
     }
 
     // public function create()

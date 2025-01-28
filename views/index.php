@@ -17,7 +17,7 @@
         <div class="dropdown">
           <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
             <i class="fa-solid fa-user me-2"></i>
-            Nome de Usuário
+            <?= $this->e($title) ?>
           </a>
           <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
             <li><a class="dropdown-item" href="#">Perfil</a></li>
