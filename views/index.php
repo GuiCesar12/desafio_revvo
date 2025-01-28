@@ -118,34 +118,99 @@
   </footer>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script>
-    
-    $('.btn').on('click', function() {
-        var courseId = $(this).siblings('input[type="hidden"]').val(); // Pega o valor do input hidden
-        $.ajax({
-            url: '/get_cursos', // URL para onde a requisição será enviada
-            type: 'GET', // Método da requisição
-            data: { id: courseId }, // Envia o ID do curso como parâmetro
-            success: function(response) {
-                // Manipula a resposta
-                var curso = JSON.parse(response).curso;
-                $('#courseId').val(curso.id).prop('disabled', true);
-                $('#courseTitle').val(curso.name).prop('disabled', true);
-                $('#courseDescription').val(curso.description).prop('disabled', true);
-                $('#courseDuration').val(curso.duration).prop('disabled', true);
+$(document).ready(function () {
+  // Evento para botão "Adicionar Curso"
+  $('#add_curso').on('click', function () {
+    $('#exampleModal').attr('data-action', '0'); // Modo criação
+    $('#courseForm')[0].reset(); // Limpa o formulário
+    $('#exampleModal').modal('show');
+  });
 
-                $('#exampleModal').modal('show');
+  // Evento para botão "Editar Curso"
+  $('.btn').on('click', function () {
+    var courseId = $(this).siblings('input[type="hidden"]').val(); // Obtém o ID do curso
 
-            },
-            error: function(xhr, status, error) {
-                // Manipula o erro
-                console.error(error);
-            }
-        });
-    });
-    $('#add_curso').on('click', function() {
+    // Faz uma requisição para obter os detalhes do curso
+    $.ajax({
+      url: '/get_cursos',
+      type: 'GET',
+      data: { id: courseId },
+      success: function (response) {
+        var curso = JSON.parse(response).curso
+        $('#saveModal').hide()
+        $('#courseId').val(curso.id).prop('disabled', true);
+        $('#courseTitle').val(curso.name).prop('disabled', true);
+        $('#courseDescription').val(curso.description).prop('disabled', true);
+        $('#courseDuration').val(curso.duration).prop('disabled', true);
+
         $('#exampleModal').modal('show');
+      },
+      error: function (xhr, status, error) {
+        console.error(error);
+      }
     });
+  });
+  $('#editModal').on('click', function () {
+    $('#saveModal').show()
+    $('#exampleModal').attr('data-action', '1'); // Modo edição
+    $('#courseId').prop('disabled', false);
+    $('#courseTitle').prop('disabled', false);
+    $('#courseDescription').prop('disabled', false);
+    $('#courseDuration').prop('disabled', false);
+  });
+  // Evento para botão "Salvar"
+  $('#saveModal').on('click', function (e) {
+    e.preventDefault();
+    var action = $('#exampleModal').attr('data-action'); // Obtém o valor do data-action
+
+    // Dados do formulário
+    var formData = {
+      id: $('#courseId').val(),
+      title: $('#courseTitle').val(),
+      description: $('#courseDescription').val(),
+      duration: $('#courseDuration').val()
+    };
+
+    if (action === '1') {
+      // Modo edição
+      $.ajax({
+        url: '/update_curso', // URL para atualizar o curso
+        type: 'POST',
+        data: formData,
+        success: function (response) {
+          $('#exampleModal').modal('hide');
+          $('#courseForm')[0].reset();
+          Swal.fire({
+            title: response.success,
+            icon: "success"
+          });
+          
+        },
+        error: function (xhr, status, error) {
+          console.error(error);
+        }
+      });
+    } else {
+      // Modo criação
+      $.ajax({
+        url: '/create_curso', // URL para criar o curso
+        type: 'POST',
+        data: formData,
+        success: function (response) {
+          alert('Curso criado com sucesso!');
+          $('#exampleModal').modal('hide');
+          location.reload(); // Recarrega a página para atualizar a lista
+        },
+        error: function (xhr, status, error) {
+          console.error(error);
+        }
+      });
+    }
+  });
+
+});
   </script>
 </body>
 </html>

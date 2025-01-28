@@ -36,11 +36,17 @@ class CursoController extends Controller
         }
     }
 
-    // public function edit($id)
-    // {
-    //     $curso = Curso::find($id);
-    //     return $this->view('cursos/edit', compact('curso'));
-    // }
+    public function update()
+    {
+        try {
+
+            $curso = new Curso();
+            $curso = $curso->update($_POST);
+            echo json_encode(['success' => 'Curso atualizado com sucesso!', 'status_code' => 200]);
+        } catch (Exception $e) {
+            echo json_encode(['error' => $e->getMessage()]);
+        }
+    }
 
     // public function update($id)
     // {
