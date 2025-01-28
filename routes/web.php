@@ -1,9 +1,9 @@
 <?php
 
-use app\controllers\RamalController;
+use app\controllers\CursoController;
 
 return [
-    ["GET",'/',[RamalController::class,'index']],
-    ["GET",'/cursos',[RamalController::class,'select']],
+    ["GET",'/',[CursoController::class,'index']],
+    ["GET",'/get_cursos',[CursoController::class,'select']],
 
 ];
