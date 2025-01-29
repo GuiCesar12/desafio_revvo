@@ -120,6 +120,15 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script>
+      function openModal() {
+        if (!document.cookie.split(';').some((item) => item.trim().startsWith('modal='))) {
+          document.getElementById("modal").style.display = "block";
+        }
+      }
+      function closeModal() {
+          document.getElementById("modal").style.display = "none";
+          document.cookie = "modal=true; path=/";
+      }
 $(document).ready(function () {
   // Evento para botão "Adicionar Curso"
   $('#add_curso').on('click', function () {
@@ -199,8 +208,12 @@ $(document).ready(function () {
         type: 'POST',
         data: formData,
         success: function (response) {
-          alert('Curso criado com sucesso!');
+          Swal.fire({
+            title: response.success,
+            icon: "success"
+          });
           $('#exampleModal').modal('hide');
+          $('#courseForm')[0].reset();
           location.reload(); // Recarrega a página para atualizar a lista
         },
         error: function (xhr, status, error) {
@@ -209,9 +222,11 @@ $(document).ready(function () {
       });
     }
   });
+openModal()
 
 });
   </script>
 </body>
 </html>
 <?php $this->insert('formularios/formulario_select'); ?>
+<?php $this->insert('formularios/modal_start'); ?>

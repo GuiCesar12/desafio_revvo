@@ -8,9 +8,13 @@ class CursoController extends Controller
 {
     public function index()
     {
-        $cursoModel = new Curso();
-        $cursos = $cursoModel->all();
-        return $this->view('index', ['cursos'=>$cursos]);
+        try {
+            $cursoModel = new Curso();
+            $cursos = $cursoModel->all();
+            return $this->view('index', ['cursos' => $cursos]);
+        } catch (Exception $e) {
+            echo json_encode(['error' => $e->getMessage()]);
+        }
     }
 
     public function store()
@@ -19,9 +23,9 @@ class CursoController extends Controller
             
             $curso = new Curso();
             $curso->create($_POST);
-            return json_encode(['success' => 'Curso criado com sucesso!','status_code'=>200]);
+            echo json_encode(['success' => 'Curso criado com sucesso!','status_code'=>200]);
         } catch (Exception $e) {
-            return json_encode(['error' => $e->getMessage()]);
+            echo json_encode(['error' => $e->getMessage()]);
         }
     }
 
@@ -47,16 +51,6 @@ class CursoController extends Controller
             echo json_encode(['error' => $e->getMessage()]);
         }
     }
-
-    // public function update($id)
-    // {
-    //     try {
-    //         Curso::update($id, $_POST);
-    //         return $this->redirect('/cursos');
-    //     } catch (Exception $e) {
-    //         return $this->view('cursos/edit', ['error' => $e->getMessage()]);
-    //     }
-    // }
 
     // public function destroy($id)
     // {

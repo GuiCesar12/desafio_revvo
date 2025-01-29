@@ -1,4 +1,3 @@
-<!-- Adicione o atributo data-action ao modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-action="0">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
