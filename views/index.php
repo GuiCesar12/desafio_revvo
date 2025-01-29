@@ -44,10 +44,10 @@
               <img src="assets/img/slide1.jpg" class="d-block w-100" alt="Slide 1">
           </div>
           <div class="carousel-item">
-              <img src="assets/img/slide2.png" class="d-block w-100" alt="Slide 2">
+              <img src="assets/img/slide2.jpg" class="d-block w-100" alt="Slide 2">
           </div>
           <div class="carousel-item">
-              <img src="assets/img/slide3.png" class="d-block w-100" alt="Slide 3">
+              <img src="assets/img/slide3.jpg" class="d-block w-100" alt="Slide 3">
           </div>
       </div>
       <button class="carousel-control-prev" type="button" data-bs-target="#customCarousel" data-bs-slide="prev">
@@ -71,7 +71,6 @@
         <div class="col-12 col-sm-6 col-md-4 col-lg-3">
             <div class="course-card"data-bs-toggle="modal" data-bs-target="#exampleModal">
               <input type="hidden" value="<?= $this->e($curso->id) ?>">
-              <img src="assets/img/curso.jpg" alt="Curso">
               <div class="title"><?= htmlspecialchars($curso->name, ENT_QUOTES, 'UTF-8'); ?></div>
               <div class="description"><?= htmlspecialchars($curso->description, ENT_QUOTES, 'UTF-8'); ?></div>
               <button class="btn">VER CURSO</button>
@@ -222,7 +221,6 @@ $(document).ready(function () {
       });
     }
   });
-openModal()
 
 });
   </script>
